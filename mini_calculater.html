@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>mini_container</title>
+</head>
+<body>
+    <input type="number" id="number1" value="" placeholder="enter 1st number">
+    <input type="number" id="number2" value="" placeholder="enter 2st number">
+    <button onclick="add()">Add</button>
+    <button onclick="subtract()">subtract</button>
+    <button onclick="multipule()">Multipule</button>
+    <button onclick="divide()">divide</button>
+    <script>
+        
+        function add(){
+            let number1=parseFloat(document.getElementById("number1").value);
+            let number2=parseFloat(document.getElementById("number2").value);
+            alert((number1+number2));
+        }
+        function subtract(){
+            let number1=parseFloat(document.getElementById("number1").value);
+            let number2=parseFloat(document.getElementById("number2").value);
+            alert(number1-number2);
+        }
+        function multipule(){
+            let number1=parseFloat(document.getElementById("number1").value);
+            let number2=parseFloat(document.getElementById("number2").value);
+            alert(number1*number2);
+        }
+        function divide(){
+            let number1=parseFloat(document.getElementById("number1").value);
+            let number2=parseFloat(document.getElementById("number2").value);
+            if(number2!==0){
+                alert(number1/number2);
+            }
+            else{
+                alert("number can not divide with zero");
+            }
+        }
+    </script>
+</body>
+</html>
