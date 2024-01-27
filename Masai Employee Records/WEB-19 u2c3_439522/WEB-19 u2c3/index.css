@@ -1,0 +1,81 @@
+/* Fill CSS here */
+
+/* Reset some default styles */
+body, h1, form, table {
+    margin: 0;
+    padding: 0;
+}
+  
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+}
+  
+h1 {
+    background-color: #333;
+    color: white;
+    padding: 20px;
+    text-align: center;
+}
+  
+div {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+  
+form {
+    margin-bottom: 20px;
+}
+  
+label {
+    font-weight: bold;
+  }
+  
+input,
+select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    box-sizing: border-box;
+}
+  
+select {
+    cursor: pointer;
+}
+  
+input[type="submit"] {
+    background-color: #4caf50;
+    color: white;
+    cursor: pointer;
+}
+  
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+  
+  th, td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: left;
+  }
+  
+th{
+    background-color: #4caf50;
+    color: white;
+}
+  
+tbody tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+  
+tbody tr:hover {
+    background-color: #f2f2f2;
+}
+  
+  
