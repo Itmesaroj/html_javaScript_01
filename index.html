@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dice Throw</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f4;
+            text-align: center;
+            margin: 20px;
+        }
+
+        #winner {
+            font-size: 18px;
+            margin-bottom: 20px;
+        }
+
+        #member-1,#member-2,#member-3{
+            width: 80px;
+            height: 80px;
+            border: 2px solid #333;
+            display: inline-block;
+            margin: 10px;
+            text-align: center;
+            line-height: 80px;
+            font-size: 24px;
+            font-weight: bold;
+            border-radius: 8px;
+            background-color: white; 
+        }
+
+        #roll {
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #4caf50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        #roll:hover {
+            background-color: #070707;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div id="winner"></div>
+    <div id="member-1"></div>
+    <div id="member-2"></div>
+    <div id="member-3"></div>
+    <button id="roll" onclick="diceroll()">ROLL THE DICE</button>
+</body>
+</html>
+<script>
+    let winner=document.querySelector("#winner");
+    let m1=document.querySelector("#member-1");
+    let m2=document.querySelector("#member-2");
+    let m3=document.querySelector("#member-3");
+
+    function diceroll(){
+        let numberM1 = Math.floor(Math.random() * 6) + 1;
+        m1.innerText=numberM1;
+        let numberM2 = Math.floor(Math.random() * 6) + 1;
+        m2.innerText=numberM2;
+        let numberM3 = Math.floor(Math.random() * 6) + 1;
+        m3.innerText=numberM3;
+        if(numberM1>numberM2 && numberM1>numberM3){
+            winner.innerText="Winner :  Member 1";
+            m1.style.backgroundColor="green";
+            if(numberM2>numberM3){
+                m2.style.backgroundColor="yellow";
+                m3.style.backgroundColor="red";
+            }
+            else if(numberM2==numberM3){
+                m2.style.backgroundColor="blue"
+                m3.style.backgroundColor="blue";
+            }
+            else{
+                m2.style.backgroundColor="red"
+                m3.style.backgroundColor="yellow";
+            }
+        }
+        else if(numberM2>numberM1 && numberM2>numberM3){
+            winner.innerText = "Winner  :  Member 2";
+            m2.style.backgroundColor = "green";
+            if (numberM1 > numberM3) {
+                m1.style.backgroundColor = "yellow";
+                m3.style.backgroundColor = "red";
+            } 
+            else if (numberM1 === numberM3) {
+                m1.style.backgroundColor = "blue";
+                m3.style.backgroundColor = "blue";
+            } 
+            else {
+                m1.style.backgroundColor = "red";
+                 m3.style.backgroundColor= "yellow";
+            }
+        }
+        else if (numberM3 > numberM1 && numberM3 > numberM2) {
+                winner.innerText = "Winner :  Member 3";
+                m3.style.backgroundColor = "green";
+                if (numberM1 > numberM2) {
+                    m1.style.backgroundColor = "yellow";
+                    m2.style.backgroundColor= "red";
+                } 
+                else if (numberM1 === numberM2) {
+                    m1.style.backgroundColor = "blue";
+                    m2.style.backgroundColor = "blue";
+                } 
+                else 
+                {
+                    m1.style.backgroundColor = "red";
+                    m2.style.backgroundColor = "yellow";
+                }
+            } 
+        else if(numberM1<numberM2 && numberM1<numberM3 && numberM2===numberM3){
+            winner.innerText="Tie";
+            m1.style.backgroundColor="red";
+            m2.style.backgroundColor="blue";
+            m3.style.backgroundColor="blue";
+
+        }  
+        else if(numberM2<numberM1 && numberM2<numberM3 && numberM1===numberM3){
+            winner.innerText="Tie";
+            m1.style.backgroundColor="blue";
+            m2.style.backgroundColor="red";
+            m3.style.backgroundColor="blue";
+        }  
+        else if(numberM3<numberM1 && numberM3<numberM2 && numberM1===numberM2){
+            winner.innerText="Tie";
+            winner.innerText="Tie";
+            m1.style.backgroundColor="blue";
+            m2.style.backgroundColor="blue";
+            m3.style.backgroundColor="red";
+        }  
+        else{
+            winner.innerText="Tie";
+            m1.style.backgroundColor="blue";
+            m2.style.backgroundColor="blue";
+            m3.style.backgroundColor="blue";
+        }  
+
+    }
+</script>
