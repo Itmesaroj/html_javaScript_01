@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>slider</title>
+    <style>
+    body {
+        font-family: 'Arial', sans-serif;
+        background-color: #f5f5f5;
+        text-align: center;
+        margin: 0;
+        padding: 0;
+    }
+
+    .container {
+        max-width: 800px;
+        margin: 20px auto;
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    #image_slider {
+        width: 100%;
+        height:400px;
+        border-radius: 8px;
+        margin-bottom: 20px;
+    }
+
+    button {
+        padding: 10px 15px;
+        font-size: 16px;
+        margin: 5px;
+        cursor: pointer;
+        background-color: #d4558c;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        transition: background-color 0.3s;
+    }
+
+    button:hover {
+        background-color: #9f146c;
+    }
+</style>
+
+</head>
+<body>
+    <div class="container">
+        <img src="https://krendly.com/wp-content/uploads/2022/09/yesstyle-vs-kooding-1.jpeg" alt="" id="image_slider">
+        <button onclick="startSlideshow()" id="startBtn">Start</button>
+        <button onclick="stopSlideshow()" id="stopBtn" >Stop</button>
+        <button onclick="prevImage()">Previous</button>
+        <button onclick="nextImage()">Next</button>
+    </div>
+</body>
+</html>
+<script>
+  
+  let  imageArray = [
+    "https://mir-s3-cdn-cf.behance.net/project_modules/max_1200/30db5277630559.5c8d3005a8572.png",
+    "https://mir-s3-cdn-cf.behance.net/project_modules/max_1200/da6c8077630559.5c8d3005a810f.png",
+    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTCM3NEcu-FNUPw_Oo5QiR8p45yJ7-wmX4LLEP93YUM_8iVJQdeDXDcn__4XCYK7fZBLhQ&usqp=CAU",
+    "https://www.shopoholicfashion.co.uk/wp-content/uploads/2018/11/womens-collection.png",
+    "https://s3.envato.com/files/260793076/50.png",
+    "https://www.slideegg.com/image/catalog/700461-Fashion%20Templates.png",
+    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRm8snU4_c20YqnlYazCPfhKhWzSNeURKMa8Q&usqp=CAU",
+    "https://6.soompi.io/wp-content/uploads/image/df8bd21e83e1442caa5edcac480b463b.jpeg?s=900x600&e=t",
+    "https://images.summitmedia-digital.com/cosmo/images/2023/03/10/newjeans-levis-1678449547.jpg",
+    "https://i0.wp.com/www.fashionchingu.com/wp-content/uploads/2023/03/Twice-Menu-1-scaled-900x700.jpg",
+    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT8JEMSsP2VjVDZG1rdX5_V6GJkU4k4tj9QaA&usqp=CAU",
+    "https://i0.wp.com/www.fashionchingu.com/wp-content/uploads/2024/02/HOMEPAGE-BANNER-Korean-Clothing-2024-5-1.jpg",
+    "https://img.businessoffashion.com/resizer/UwORx17MzFc1iMcv_Kd7iEMFaCY=/1600x900/filters:format(jpg):quality(70):focal(940x172:950x182)/cloudfront-eu-central-1.images.arcpublishing.com/businessoffashion/D3KCCHOFARCSTLU7K5K7H7LKOY.jpg","https://in.hellomagazine.com/images/0283-188b61781834-4e692e38424c-1000/horizontal-480/1299871022-collage-u11464868604xll.jpg"
+ ,"https://i0.wp.com/www.fashionchingu.com/wp-content/uploads/2023/10/Twice-Homepage.jpg",
+ "https://images.saymedia-content.com/.image/t_share/MTc0NTAxMjQ0MTc2ODM2NTk4/how-to-dress-up-like-a-kpop-idol.jpg",
+ "https://i0.wp.com/www.fashionchingu.com/wp-content/uploads/2023/03/Fashion-Clothing-Feature-Image.jpg","https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSILAoBfwnC_EZTp88X9ERS9458Q-UWPCjCNXcKlEA7dzwGVYqSXJqHV_L5ckrhn_WZdAg&usqp=CAU","https://images-cdn.ubuy.co.in/63e6abcf2339a826065d5c04-korean-fashion-women-summer-casual.jpg","https://media.cnn.com/api/v1/images/stellar/prod/130715171905-korean-designers-20.jpg?q=w_640,h_425,x_0,y_0,c_fill/h_618",
+];
+let imgSlider = document.getElementById("image_slider");
+        let startBtn = document.getElementById("startBtn");
+        let stopBtn = document.getElementById("stopBtn");
+        let currentIndex = 0;
+        let slideshowInterval;
+
+        function startSlideshow() {
+            slideshowInterval = setInterval(nextImage, 1000);
+        }
+
+
+        function stopSlideshow() {
+            clearInterval(slideshowInterval);
+        }
+
+
+        function nextImage() {
+            currentIndex++;
+            if (currentIndex >= imageArray.length) {
+                currentIndex = 0;
+           }
+           imgSlider.src = imageArray[currentIndex];
+        }
+
+
+        function prevImage() {
+            currentIndex--; 
+            if (currentIndex < 0) {
+                currentIndex = imageArray.length - 1;
+            }
+            imgSlider.src = imageArray[currentIndex];
+        }
+        
+        imgSlider.src = imageArray[currentIndex];
+</script>
