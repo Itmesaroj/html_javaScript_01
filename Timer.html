@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Timer</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        .container {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        label {
+            margin-right: 10px;
+            font-size: 18px;
+            color: #333;
+        }
+
+        input {
+            width: 50px;
+            text-align: center;
+            padding: 8px;
+            font-size: 16px;
+            margin: 0 5px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        .btn_container {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        button {
+            padding: 12px 20px;
+            margin: 0 5px;
+            cursor: pointer;
+            font-size: 16px;
+            background-color: #3498db;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #2980b9;
+        }
+
+        .time_container {
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 36px;
+            margin: 0;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <label for="hours">Hours:</label>
+        <input type="number" id="hours" min="0"  value="0">
+        <label for="minutes">Minutes:</label>
+        <input type="number" id="minutes" min="0" value="0">
+        <label for="second">Second:</label>
+        <input type="number" id="second" min="0" value="0">   
+    </div>
+    <div class="btn_container">
+        <button id="start" onclick="start()">Start</button>
+        <button id="reset" onclick="reset()">Reset</button>
+        <button id="stop" onclick="stop()">Stop</button>
+    </div>
+    <div class="time_container">
+        <h1 id="display">00:00:00</h1>
+    </div>
+</body>
+</html>
+<script>
+    let timer;
+    let display=document.querySelector("#display");
+    let hours=document.querySelector("#hours");
+    let minutes=document.querySelector("#minutes");
+    let second=document.querySelector("#second");
+    function start(){
+        if(timer){
+            clearInterval(timer);
+        }
+        let h=parseInt(hours.value) || 0;
+        let m=parseInt(minutes.value) || 0;
+        let s=parseInt(second.value) || 0;
+        let totalSeond=h*3600+m*60+s;
+        timer=setInterval(function(){
+            totalSeond--;
+            update(totalSeond);
+        },1000);
+    }
+    function update(totalsecond){
+        let h=Math.floor(totalsecond/3600);
+        let m=Math.floor((totalsecond % 3600)/60);
+        let s=totalsecond%60;
+        display.innerHTML=`${h} : ${m} : ${s}`;
+    }
+    function reset(){
+       clearInterval(timer);
+       hours.value="0";
+       minutes.value="0";
+       second.value="0";
+       update(0);
+    }
+    function stop(){
+        clearInterval(timer);
+    }
+</script>
