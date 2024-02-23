@@ -84,16 +84,19 @@ let imgSlider = document.getElementById("image_slider");
         let slideshowInterval;
 
         function startSlideshow() {
-            slideshowInterval = setInterval(nextImage, 1000);
+            slideshowInterval = setInterval(slider, 1000);
         }
-
-
-        function stopSlideshow() {
-            clearInterval(slideshowInterval);
+        function slider() {
+            currentIndex++;
+            if (currentIndex >= imageArray.length) {
+                currentIndex = 0;
+           }
+           imgSlider.src = imageArray[currentIndex];
         }
 
 
         function nextImage() {
+            stopSlideshow();
             currentIndex++;
             if (currentIndex >= imageArray.length) {
                 currentIndex = 0;
@@ -103,6 +106,7 @@ let imgSlider = document.getElementById("image_slider");
 
 
         function prevImage() {
+            stopSlideshow();
             currentIndex--; 
             if (currentIndex < 0) {
                 currentIndex = imageArray.length - 1;
@@ -111,4 +115,9 @@ let imgSlider = document.getElementById("image_slider");
         }
         
         imgSlider.src = imageArray[currentIndex];
+        function stopSlideshow() {
+           
+            clearInterval(slideshowInterval);
+            
+        }
 </script>
