@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recipe</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Madimi+One&display=swap" rel="stylesheet">
+    <style>
+        *{
+            margin: 0px;
+            padding: 0px;
+            box-sizing: border-box;
+        }
+        body{
+            letter-spacing: 1px;
+            font-family: "Madimi One", sans-serif;
+        }
+        .conatiner{
+            width: 100%;
+            background-color: white;
+            max-height: 800px;
+        }
+        header {
+            background-color: black;
+            color: white;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 0.5rem;
+            border-bottom: solid  rgb(228, 224, 224) 2px;
+            margin-bottom: 1rem;
+            position: sticky;
+            top: 0;
+            z-index: 123;
+        }
+
+        h2{
+            background-color:rgb(68,145,27);
+            padding: .7rem;
+            color: white;
+            border-radius:7% 93% 8% 92% / 82% 20% 80% 18% ;
+            vertical-align: bottom;
+           margin: 1rem;
+        }
+        #serach{
+            width:320px;
+            padding: .7rem;
+            margin: 1rem;
+            margin-left: 0px;
+            font-family: "Madimi One", sans-serif;
+            outline: none;
+            border:none;
+            color: rgb(131, 127, 127);
+            border-bottom:dashed 3px rgb(68,145,27);;
+            background-color: black;
+            color: white;
+        }
+        .logo{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 2rem;
+        }
+        .logo img{
+            margin: .8rem;
+        }
+        .item {
+            border: 2px solid rgb(139, 139, 139);
+            padding: 10px;
+            margin-bottom: 20px; 
+            color: rgb(131, 127, 127);
+            box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+        }
+        #meal_image{
+            width: 300px;
+            margin: 10px;
+        }
+
+        .item h3 {
+            margin: 0;
+            font-size: 20px;
+            color: #000000;
+        }
+        #recipe_display{
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="conatiner">
+      <header>
+        <div class="logo">
+            <h2><span class="title">🥗Search Recipe🥗</span></h2>
+        </div>
+        <div class="serach_section">
+            <label for="serach">Search Recipe:-</label>
+            <input type="text" id="serach" placeholder="Enter Recipe Name">
+        </div>
+      </header>
+      
+      <div id="recipe_display">
+      </div>
+    </div>
+</body>
+</html>
+<script>
+    let timer=true;
+    let input=document.querySelector("#serach");
+    input.addEventListener("input",()=>{
+        throwtling(fechdata,1000);
+    });
+
+
+async function fechdata(){
+    try{
+        let res=await fetch(`https://www.themealdb.com/api/json/v1/1/search.php?s=${input.value}`);
+        if(!res.ok){
+            throw new Error("somethig went wrong");
+        }
+        else{
+            let data=await res.json();
+            console.log(data);
+            displayData(data);
+          }
+        }
+        catch(err){
+          console.error(err);
+      }
+    }
+  
+  
+let count=0;
+function throwtling(fechdata,delay){
+    if(timer===true){
+        count++;
+        console.log(count);
+        fechdata();
+         timer=false;
+        }
+    setTimeout(()=>{
+          timer=true;
+        },delay)  
+}
+
+function displayData(data){
+    document.querySelector("#recipe_display").innerHTML="";
+        if (data.meals) {
+            data.meals.forEach(meal => {
+            let div= document.createElement("div");
+                div.className="item";
+                div.innerHTML = `
+                <h3>${meal.strMeal}</h3>
+                <img src="${meal.strMealThumb}" alt="${meal.strMeal}" id="meal_image">
+                <p>${meal.strInstructions}</p>
+                `;
+                document.querySelector("#recipe_display").append(div);
+            });
+        } 
+        else {
+            document.querySelector("#recipe_display").innerHTML = "<p>No recipes found.</p>";
+        }
+}
+</script>
